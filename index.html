@@ -9,7 +9,7 @@
     <link rel="icon" href="images/logospade.PNG" type="image/x-icon">
     <style>
         :root {
-            /* Theme variables from your existing files */
+            /* Theme variables */
             --primary-color: #646E68;
             --primary-light-color: #D1DEDE;
             --background-light: #FFFFFF;
@@ -54,11 +54,6 @@
             padding: 0 20px;
         }
 
-        .section {
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
         /* Preloader */
         .preloader {
             position: fixed;
@@ -104,8 +99,7 @@
             }
         }
 
-
-        /* --- START: UPDATED HEADER & NAVIGATION --- */
+        /* Header & Navigation */
         .header {
             position: fixed;
             top: 0;
@@ -174,10 +168,8 @@
         .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .nav-toggle.active span:nth-child(2) { opacity: 0; }
         .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        /* --- END: UPDATED HEADER & NAVIGATION --- */
 
-
-        /* --- ACE OF SPADE HERO SECTION --- */
+        /* Hero Section */
         .hero {
             padding-top: 150px;
             padding-bottom: 80px;
@@ -185,30 +177,38 @@
             color: var(--white);
             text-align: center;
             position: relative;
+            overflow: hidden; /* Added to contain pseudo-elements */
         }
         .hero-content h1 {
             font-size: 3.5rem;
             color: var(--white);
             text-shadow: 0 3px 10px rgba(0,0,0,0.5);
             margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 2;
         }
-        
-        .hero-content h1::before {
+
+        /* --- START: DESKTOP BACKGROUND IMAGE --- */
+        .hero-content::before {
             content: '';
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
             z-index: 1;
-            background-image: url('D:/web designing and development/system check/IMG_6725 (1).JPEG'); /* <-- CHANGED FROM LOCAL FILE PATH */
+            background-image: url('aceofspade.img.jpg');
             background-size: contain;
+            background-position: center;
             background-repeat: no-repeat;
-            width: 1000px;
-            height: 900px;
+            width: 1200px;
+            height: 350px;
             opacity: 0.15;
         }
+
+        .hero-content > * {
+            position: relative;
+            z-index: 2;
+        }
+        /* --- END: DESKTOP BACKGROUND IMAGE --- */
+        
 
         .hero-content p {
             font-size: 1.2rem;
@@ -234,7 +234,7 @@
             font-size: 1.2rem;
         }
 
-        /* Animated shapes from other pages */
+        /* Animated shapes */
         .animated-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; }
         .animated-shapes li {
             position: absolute; display: block; list-style: none; width: 20px; height: 20px;
@@ -248,7 +248,7 @@
             100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
         }
 
-        /* --- MAIN CONTENT SECTION --- */
+        /* Main Content & Timeline */
         .main-content {
             padding: 80px 0;
             background: var(--background-light);
@@ -274,12 +274,8 @@
             background-color: inherit;
             width: 50%;
         }
-        .timeline-container.left {
-            left: 0;
-        }
-        .timeline-container.right {
-            left: 50%;
-        }
+        .timeline-container.left { left: 0; }
+        .timeline-container.right { left: 50%; }
         .timeline-container::after {
             content: '';
             position: absolute;
@@ -292,9 +288,7 @@
             border-radius: 50%;
             z-index: 1;
         }
-        .right::after {
-            left: -12.5px;
-        }
+        .right::after { left: -12.5px; }
         .timeline-content {
             padding: 20px 30px;
             background-color: white;
@@ -307,7 +301,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Event Competitions Section */
+        /* Competitions Section */
         .competitions-section {
             padding: 80px 0;
             background: #F8F9FA;
@@ -349,38 +343,63 @@
         /* Footer */
         .footer { text-align: center; padding: 2rem; background: var(--background-dark); color: #aaa; font-size: 0.9rem; }
         
-        /* Responsive */
+        /* Responsive Styles */
         @media screen and (max-width: 768px) {
             .hero {
                 padding-top: 120px;
                 padding-bottom: 60px;
             }
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-            .hero-content h1::before {
-                width: 100%;
-                height: 400px;
-            }
             .hero-content p {
                 font-size: 1.1rem;
                 padding: 0 1rem;
             }
-
             .timeline::after { left: 20px; }
             .timeline-container { width: 100%; padding-left: 55px; padding-right: 15px; }
             .timeline-container.right { left: 0%; }
             .timeline-container.left::after, .timeline-container.right::after { left: 7.5px; }
             .event-details { flex-direction: column; gap: 1rem; align-items: center;}
 
-            /* --- START: UPDATED RESPONSIVE NAV STYLES (from index.html) --- */
             .nav-toggle { display: flex; }
             .nav { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s; z-index: 10; padding-top: 0; }
             .nav.active { max-height: 500px; padding: 1rem 0; border-top: 1px solid var(--primary-light-color); }
             .nav-list { flex-direction: column; gap: 0; }
             .nav-link { padding: 1rem 1.5rem; text-align: center; color: var(--text-color); }
             .nav-link:hover::before { width: 0; }
-            /* --- END: UPDATED RESPONSIVE NAV STYLES --- */
+
+            /* --- START: MOBILE HERO STYLES --- */
+            .hero-content::before {
+                display: none; /* Hide the main desktop background */
+            }
+            .hero-content h1 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            .year {
+                font-size: 3.5rem;
+                position: relative;
+                z-index: 2;
+                padding: 1rem 0;
+            }
+            .year::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                z-index: -1;
+                background-image: url('aceofspade.img.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                width: 320px;
+                height: 100px;
+                opacity: 0.2;
+                border-radius: 10px;
+            }
+            /* --- END: MOBILE HERO STYLES --- */
         }
 
     </style>
@@ -392,7 +411,6 @@
         </div>
     </div>
 
-    <!-- START: COPIED HEADER HTML -->
     <header class="header" id="header">
         <div class="container">
             <a href="index.html" class="logo">
@@ -412,13 +430,12 @@
             </div>
         </div>
     </header>
-    <!-- END: COPIED HEADER HTML -->
 
     <main>
         <section class="hero">
             <ul class="animated-shapes"><li></li><li></li><li></li></ul>
             <div class="container hero-content">
-                <h1>Ace of Spade 2025</h1>
+                <h1>Ace of Spade <span class="year">2025</span></h1>
                 <p>Our annual flagship event, a grand celebration of economics, strategy, and talent.</p>
                 <div class="event-details">
                     <div class="detail-item">
@@ -497,11 +514,9 @@
         <p>&copy; 2025 SPADE Shivaji College. All Rights Reserved.</p>
     </footer>
 
-    <!-- START: UPDATED JAVASCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const preloader = document.getElementById('preloader');
-            const header = document.getElementById('header');
             const navToggle = document.getElementById('nav-toggle');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -525,24 +540,8 @@
                     });
                 });
             }
-
-            // --- Intersection Observer for Animations ---
-            const animationObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-in-up').forEach(el => {
-                animationObserver.observe(el);
-            });
         });
     </script>
-    <!-- END: UPDATED JAVASCRIPT -->
     
 </body>
 </html>
-
