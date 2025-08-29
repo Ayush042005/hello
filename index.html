@@ -59,6 +59,51 @@
             position: relative;
             overflow: hidden;
         }
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--text-color) 0%, var(--background-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, visibility 0.8s;
+            pointer-events: none;
+        }
+        
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-text {
+            font-size: 3rem;
+            color: var(--white);
+            font-weight: 700;
+            display: flex;
+        }
+        .preloader-text span {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: preloader-reveal 1.25s ease-out forwards;
+        }
+        .preloader-text span:nth-child(1) { animation-delay: 0.1s; }
+        .preloader-text span:nth-child(2) { animation-delay: 0.2s; }
+        .preloader-text span:nth-child(3) { animation-delay: 0.3s; }
+        .preloader-text span:nth-child(4) { animation-delay: 0.4s; }
+        .preloader-text span:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes preloader-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
 
         /* Header & Navigation (Consistent with other pages) */
         .header {
@@ -69,18 +114,42 @@
         .header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; }
         .logo-img { height: 45px; transition: transform var(--transition-fast); }
         .logo-img:hover { transform: scale(1.05) rotate(-3deg); }
-        .nav-list { list-style: none; display: flex; gap: 2.5rem; }
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
         .nav-link {
-            text-decoration: none; color: var(--text-color-light); font-weight: 600;
-            position: relative; padding: 5px 0; transition: color var(--transition-fast);
+            text-decoration: none;
+            color: var(--text-color-light);
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            transition: color var(--transition-fast);
         }
+
         .nav-link::before {
-            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px;
-            background: var(--primary-color); transition: width 0.4s ease, left 0.4s ease;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.4s ease, left 0.4s ease;
         }
-        .nav-link:hover::before, .nav-link.active::before { width: 100%; left: 0; }
-        .nav-link:hover, .nav-link.active { color: var(--primary-color); }
-        .nav-toggle { display: none; }
+
+        .nav-link:hover::before, .nav-link.active::before {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-toggle { display: none; } 
 
         /* --- ACE OF SPADE HERO SECTION --- */
         .hero {
@@ -110,7 +179,7 @@
             z-index: 1; /* Puts the image behind the text */
             
             /* --- CUSTOMIZE YOUR IMAGE HERE --- */
-            background-image: url('path/to/your/image.jpg'); /* <-- CHANGE THIS PATH */
+            background-image: url('D:\web designing and development\system check\IMG_6725 (1).JPEG'); /* <-- CHANGE THIS PATH */
             background-size: contain;
             background-repeat: no-repeat;
             
@@ -272,6 +341,12 @@
     </style>
 </head>
 <body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-text">
+            <span>S</span><span>P</span><span>A</span><span>D</span><span>E</span>
+        </div>
+    </div>
+
     <header class="header" id="header">
         <div class="container">
             <a href="index.html" class="logo">
@@ -281,10 +356,8 @@
                 <ul class="nav-list">
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="gallery.html" class="nav-link">Our Team</a></li>
-                    <li><a href="tatva.html" class="nav-link">Tatva</a></li>
                     <li><a href="newsletter.html" class="nav-link">Newsletter</a></li>
-                    <li><a href="documentary.html" class="nav-link">Documentaries</a></li>
-                    <li><a href="events.html" class="nav-link">Events</a></li>
+                    <li><a href="documentary.html" class="nav-link active">Documentaries</a></li>
                     <li><a href="index.html#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
@@ -377,6 +450,17 @@
         <p>&copy; 2025 SPADE Shivaji College. All Rights Reserved.</p>
     </footer>
 
-    
+    <script>
+        // Basic script for mobile menu
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
